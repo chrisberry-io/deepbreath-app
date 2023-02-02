@@ -1,2 +1,9 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import UpDown from '../components/UpDown.svelte';
+	import { boxReps } from '../stores';
+</script>
+
+<h1>Time to breathe</h1>
+
+<UpDown value={boxReps} />
+<a href="/box-breathing">Box Breathing</a>
