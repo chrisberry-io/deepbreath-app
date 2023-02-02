@@ -1,7 +1,10 @@
-<script>
+<script lang="ts">
 	import { gsap } from 'gsap';
 	import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 	import { onMount } from 'svelte';
+	import { boxReps } from '../stores';
+
+	let reps: number = $boxReps;
 
 	onMount(() => {
 		gsap.registerPlugin(MotionPathPlugin);
@@ -10,14 +13,14 @@
 			scale: 2,
 			duration: 4,
 			ease: 'power2.inOut',
-			repeat: 24,
+			repeat: reps + 1,
 			repeatDelay: 4,
 			yoyo: true
 		});
 
 		gsap.to('#circle', {
 			duration: 16,
-			repeat: 12,
+			repeat: reps - 1,
 			ease: 'none',
 			motionPath: {
 				path: '#path',
@@ -28,6 +31,11 @@
 				end: 1.1
 			}
 		});
+
+		const box = document.getElementById('box');
+		if (box !== null) {
+			box.style.visibility = 'visible';
+		}
 	});
 </script>
 
@@ -50,6 +58,7 @@
 <style>
 	svg {
 		overflow: visible;
+		visibility: hidden;
 	}
 	#circle {
 		fill: pink;
