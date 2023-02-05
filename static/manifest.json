@@ -1,0 +1,24 @@
+{
+	"short_name": "DeepBreath",
+	"name": "DeepBreath",
+	"start_url": "/",
+	"icons": [
+		{
+			"src": "logo_512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"background_color": "#33293e",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#33293e",
+	"shortcuts": [
+		{
+			"name": "Box Breathing",
+			"description": "Start a box breathing session",
+			"url": "/exercises/box-breathing"
+		}
+	],
+	"description": "A simple PWA for breathing exercises"
+}
