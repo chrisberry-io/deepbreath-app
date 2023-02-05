@@ -77,15 +77,17 @@ h6 {
 
 :root {
 	--background-default-dark: #33293e;
+	--color-surface1-dark: #2c1c3e;
 	--color-text-default-dark: #ff7249;
 }
 
 html.dark {
-	--background-default: var(--background-default-dark);
+	--color-background-default: var(--background-default-dark);
 	--color-text-default: var(--color-text-default-dark);
+	--color-surface1: var(--color-surface1-dark);
 }
 
 body {
-	background-color: var(--background-default);
+	background-color: var(--color-background-default);
 	color: var(--color-text-default);
 }
