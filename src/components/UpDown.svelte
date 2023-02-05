@@ -12,6 +12,8 @@
 	};
 </script>
 
-<button on:click={() => onDown(value)}> - </button>
-{$value}
-<button on:click={() => onUp(value)}> + </button>
+<div>
+	<button on:click={() => onDown(value)}> - </button>
+	{$value}
+	<button on:click={() => onUp(value)}> + </button>
+</div>

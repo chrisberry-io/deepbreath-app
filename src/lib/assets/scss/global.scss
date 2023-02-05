@@ -1,3 +1,5 @@
+@import 'open-props/style';
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -27,6 +29,9 @@ body {
 body {
 	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
+	font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+		'Segoe UI Symbol', 'Noto Color Emoji';
 }
 /*
   6. Improve media defaults
@@ -66,4 +71,21 @@ h6 {
 #root,
 #__next {
 	isolation: isolate;
+}
+
+/* Theming */
+
+:root {
+	--background-default-dark: #33293e;
+	--color-text-default-dark: #ff7249;
+}
+
+html.dark {
+	--background-default: var(--background-default-dark);
+	--color-text-default: var(--color-text-default-dark);
+}
+
+body {
+	background-color: var(--background-default);
+	color: var(--color-text-default);
 }
