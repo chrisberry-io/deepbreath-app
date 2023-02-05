@@ -6,23 +6,44 @@
 
 	let box: SVGElement, path: SVGPathElement, circle: SVGCircleElement;
 
+	let boxAnim: gsap.core.Timeline;
+	let circleAnim: gsap.core.Timeline;
+
 	let reps: number = $boxReps;
+
+	let animationStarted = false;
 
 	onMount(() => {
 		gsap.registerPlugin(MotionPathPlugin);
 
-		gsap.to(box, {
+		boxAnim = gsap.timeline({ repeat: reps }).pause();
+		boxAnim.to(box, {
 			scale: 2,
 			duration: 4,
-			ease: 'power2.inOut',
-			repeat: reps * 1.5,
-			repeatDelay: 4,
-			yoyo: true
+			ease: 'power2.inOut'
+		});
+		boxAnim.to(box, {
+			duration: 4
+		});
+		boxAnim.to(box, {
+			scale: 1,
+			duration: 4,
+			ease: 'power2.inOut'
+		});
+		boxAnim.to(box, {
+			duration: 4
 		});
 
-		gsap.to(circle, {
+		circleAnim = gsap
+			.timeline({
+				repeat: reps,
+				onStart: () => {
+					animationStarted = true;
+				}
+			})
+			.pause();
+		circleAnim.to(circle, {
 			duration: 16,
-			repeat: reps - 1,
 			ease: 'none',
 			motionPath: {
 				path: path,
@@ -40,6 +61,8 @@
 	});
 </script>
 
+<!-- TODO: Replace on:click with something more automatic -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <svg
 	width="100"
 	height="100"
@@ -48,6 +71,10 @@
 	xmlns="http://www.w3.org/2000/svg"
 	id="box"
 	bind:this={box}
+	on:click={() => {
+		boxAnim.restart();
+		circleAnim.restart();
+	}}
 >
 	<path
 		id="path"
@@ -69,7 +96,14 @@
 		</linearGradient>
 	</defs>
 
-	<circle bind:this={circle} id="circle" cx="300" cy="20" r="5" />
+	<circle
+		bind:this={circle}
+		id="circle"
+		cx="300"
+		cy="20"
+		r="5"
+		style="visibility: {animationStarted ? 'visible' : 'hidden'};"
+	/>
 </svg>
 
 <style>
