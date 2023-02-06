@@ -1,6 +1,6 @@
 <script>
-	import BoxAnimation from '../../../components/BoxAnimation.svelte';
-	import PageTransition from '../../../components/PageTransition.svelte';
+	import BoxAnimation from '$lib/components/BoxAnimation.svelte';
+	import PageTransition from '$lib/components/PageTransition.svelte';
 </script>
 
 <PageTransition>
