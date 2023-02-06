@@ -1,8 +1,6 @@
 <script>
 	import '$lib/assets/scss/global.scss';
 	import { onMount } from 'svelte';
-
-	// @ts-ignore
 	import { pwaInfo } from 'virtual:pwa-info';
 
 	onMount(async () => {
