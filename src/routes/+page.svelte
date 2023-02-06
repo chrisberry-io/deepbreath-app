@@ -1,8 +1,8 @@
 <script>
-	import ExerciseTile from '../components/ExerciseTile.svelte';
-	import PageTransition from '../components/PageTransition.svelte';
+	import ExerciseTile from '$lib/components/ExerciseTile.svelte';
+	import PageTransition from '$lib/components/PageTransition.svelte';
 	import { boxReps } from '../stores';
-	import BoxExample from '../components/svg/BoxExample.svelte';
+	import BoxExample from '$lib/components/svg/BoxExample.svelte';
 </script>
 
 <PageTransition>
