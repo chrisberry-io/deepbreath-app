@@ -1,24 +1,24 @@
+import type { Metric } from 'web-vitals';
 import { onCLS, onFCP, onFID, onLCP, onTTFB } from 'web-vitals';
+
+export type AnalyticsOptions = {
+	params: Record<string, string>;
+	path: string;
+	analyticsId: string;
+	debug?: true;
+};
 
 const vitalsUrl = 'https://vitals.vercel-analytics.com/v1/vitals';
 
-function getConnectionSpeed() {
+function getConnectionSpeed(): string {
 	return 'connection' in navigator &&
 		navigator['connection'] &&
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
 		'effectiveType' in navigator['connection']
-		? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		  // @ts-ignore
-		  navigator['connection']['effectiveType']
+		? navigator['connection']['effectiveType']
 		: '';
 }
 
-/**
- * @param {import("web-vitals").Metric} metric
- * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; debug: boolean; }} options
- */
-function sendToAnalytics(metric, options) {
+function sendToAnalytics(metric: Metric, options: AnalyticsOptions) {
 	const page = Object.entries(options.params).reduce(
 		(acc, [key, value]) => acc.replace(value, `[${key}]`),
 		options.path
@@ -38,10 +38,8 @@ function sendToAnalytics(metric, options) {
 		console.log('[Analytics]', metric.name, JSON.stringify(body, null, 2));
 	}
 
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-ignore
 	const blob = new Blob([new URLSearchParams(body).toString()], {
-		// This content type is necessary for `sendBeacon`
+		// This content type is necessary for `sendBeacon`:
 		type: 'application/x-www-form-urlencoded'
 	});
 	if (navigator.sendBeacon) {
@@ -55,10 +53,7 @@ function sendToAnalytics(metric, options) {
 		});
 }
 
-/**
- * @param {any} options
- */
-export function webVitals(options) {
+export function webVitals(options: AnalyticsOptions): void {
 	try {
 		onFID((metric) => sendToAnalytics(metric, options));
 		onTTFB((metric) => sendToAnalytics(metric, options));
