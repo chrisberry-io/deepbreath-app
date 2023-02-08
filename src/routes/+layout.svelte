@@ -1,24 +1,19 @@
-<script lang="ts">
+<script>
 	import '$lib/assets/scss/global.scss';
 	import { dev } from '$app/environment';
 	import { inject } from '@vercel/analytics';
+	import { webVitals } from '$lib/vitals';
+	let analyticsId = import.meta.env.VERCEL_ANALYTICS_ID;
+	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
 
-	import { webVitals } from '$lib/webvitals';
-
-	let analyticsId = import.meta.env.VERCEL_ANALYTICS_ID as string;
-	let path: string;
-	let params: Record<string, string>;
-
-	page.subscribe((page) => {
-		path = page.path;
-		params = page.params;
-	});
-
-	onMount(() => {
-		if (analyticsId) webVitals({ path, params, analyticsId });
-	});
+	$: if (browser && analyticsId) {
+		webVitals({
+			path: $page.url.pathname,
+			params: $page.params,
+			analyticsId
+		});
+	}
 
 	inject({ mode: dev ? 'development' : 'production' });
 </script>
