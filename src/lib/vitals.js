@@ -1,24 +1,24 @@
-import type { Metric } from 'web-vitals';
 import { onCLS, onFCP, onFID, onLCP, onTTFB } from 'web-vitals';
-
-export type AnalyticsOptions = {
-	params: Record<string, string>;
-	path: string;
-	analyticsId: string;
-	debug?: true;
-};
 
 const vitalsUrl = 'https://vitals.vercel-analytics.com/v1/vitals';
 
-function getConnectionSpeed(): string {
+function getConnectionSpeed() {
 	return 'connection' in navigator &&
 		navigator['connection'] &&
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		'effectiveType' in navigator['connection']
-		? navigator['connection']['effectiveType']
+		? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		  // @ts-ignore
+		  navigator['connection']['effectiveType']
 		: '';
 }
 
-function sendToAnalytics(metric: Metric, options: AnalyticsOptions) {
+/**
+ * @param {import("web-vitals").Metric} metric
+ * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; debug: boolean; }} options
+ */
+function sendToAnalytics(metric, options) {
 	const page = Object.entries(options.params).reduce(
 		(acc, [key, value]) => acc.replace(value, `[${key}]`),
 		options.path
@@ -38,8 +38,10 @@ function sendToAnalytics(metric: Metric, options: AnalyticsOptions) {
 		console.log('[Analytics]', metric.name, JSON.stringify(body, null, 2));
 	}
 
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	const blob = new Blob([new URLSearchParams(body).toString()], {
-		// This content type is necessary for `sendBeacon`:
+		// This content type is necessary for `sendBeacon`
 		type: 'application/x-www-form-urlencoded'
 	});
 	if (navigator.sendBeacon) {
@@ -53,7 +55,10 @@ function sendToAnalytics(metric: Metric, options: AnalyticsOptions) {
 		});
 }
 
-export function webVitals(options: AnalyticsOptions): void {
+/**
+ * @param {any} options
+ */
+export function webVitals(options) {
 	try {
 		onFID((metric) => sendToAnalytics(metric, options));
 		onTTFB((metric) => sendToAnalytics(metric, options));
