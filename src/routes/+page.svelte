@@ -7,9 +7,13 @@
 
 <PageTransition>
 	<div class="wrapper">
-		<h1>Time to breathe</h1>
 		<ul class="option">
-			<ExerciseTile name="Box Breathing" link="/exercises/box-breathing" reps={boxReps}>
+			<ExerciseTile
+				name="Box Breathing"
+				link="/exercises/box-breathing"
+				reps={boxReps}
+				description="Breath in for 4 seconds, hold for 4 seconds, breath out for 4 seconds, hold for 4 seconds. Repeat."
+			>
 				<BoxExample slot="icon" />
 			</ExerciseTile>
 		</ul>
