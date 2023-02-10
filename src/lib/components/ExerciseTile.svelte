@@ -3,6 +3,7 @@
 	import UpDown from './UpDown.svelte';
 	import { fade } from 'svelte/transition';
 	import Modal from './Modal.svelte';
+	import PlayButton from './svg/PlayButton.svelte';
 
 	// Props
 	export let name: string;
@@ -26,7 +27,10 @@
 		<p class="description">{description}</p>
 		<button class="reps" transition:fade on:click={showModal}>{$reps} Reps</button>
 	</div>
-	<slot name="icon" />
+	<a href={link} class="play-button">
+		<PlayButton />
+		<slot name="icon" />
+	</a>
 </li>
 
 <Modal bind:modalVisible>
@@ -74,5 +78,18 @@
 
 	.description {
 		font-size: 0.9rem;
+	}
+
+	.play-button {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+		grid-column-gap: 0px;
+		grid-row-gap: 0px;
+		align-items: center;
+		justify-items: center;
+		& > :global(svg) {
+			grid-area: 1 / 1 / 2 / 2;
+		}
 	}
 </style>
