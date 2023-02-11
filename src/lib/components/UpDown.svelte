@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Writable } from 'svelte/store';
+	import { Icon, Minus, Plus } from 'svelte-hero-icons';
 
 	export let value: Writable<number>;
 
@@ -15,8 +16,8 @@
 <div class="wrapper">
 	<input type="number" bind:value={$value} size="2" max="99" min="1" />
 	<div class="button-wrapper">
-		<button on:click={() => onDown(value)}> - </button>
-		<button on:click={() => onUp(value)}> + </button>
+		<button on:click={() => onDown(value)}><Icon src={Minus} size="16" /></button>
+		<button on:click={() => onUp(value)}><Icon src={Plus} size="16" /></button>
 	</div>
 </div>
 
@@ -67,6 +68,9 @@
 			width: var(--size-8);
 			height: var(--size-8);
 			background: var(--color-surface2);
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			cursor: pointer;
 			&:hover {
 				background: var(--color-background-default);
