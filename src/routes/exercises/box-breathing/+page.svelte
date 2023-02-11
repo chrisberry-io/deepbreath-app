@@ -1,13 +1,10 @@
 <script>
 	import BoxAnimation from '$lib/components/BoxAnimation.svelte';
-	import PageTransition from '$lib/components/PageTransition.svelte';
 </script>
 
-<PageTransition>
-	<div class="wrapper">
-		<BoxAnimation />
-	</div>
-</PageTransition>
+<div class="wrapper">
+	<BoxAnimation />
+</div>
 
 <style>
 	.wrapper {
