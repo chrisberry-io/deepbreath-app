@@ -6,6 +6,7 @@
 
 	let box: SVGElement, path: SVGPathElement, circle: SVGCircleElement;
 
+	let boxFadingIn: gsap.core.Timeline;
 	let boxPreExercise: gsap.core.Timeline;
 	let boxExercise: gsap.core.Timeline;
 	let boxAnim: gsap.core.Timeline;
@@ -18,17 +19,23 @@
 	onMount(() => {
 		gsap.registerPlugin(MotionPathPlugin);
 
-		boxPreExercise = gsap.timeline({ repeat: 1 });
-		boxPreExercise.to(box, {
-			scale: 2,
-			duration: 4,
-			ease: 'power2.inOut'
+		boxFadingIn = gsap.timeline().to(box, { duration: 1 }).to(box, {
+			opacity: 1,
+			duration: 1
 		});
-		boxPreExercise.to(box, {
-			scale: 1,
-			duration: 4,
-			ease: 'power2.inOut'
-		});
+
+		boxPreExercise = gsap
+			.timeline({ repeat: 1 })
+			.to(box, {
+				scale: 2,
+				duration: 4,
+				ease: 'power2.inOut'
+			})
+			.to(box, {
+				scale: 1,
+				duration: 4,
+				ease: 'power2.inOut'
+			});
 
 		boxExercise = gsap.timeline({
 			repeat: reps,
@@ -76,7 +83,13 @@
 			box.style.visibility = 'visible';
 		}
 
-		boxAnim = gsap.timeline().add(boxPreExercise).add(boxExercise).play().add(circleAnim, '<');
+		boxAnim = gsap
+			.timeline()
+			.add(boxFadingIn)
+			.add(boxPreExercise, '<')
+			.add(boxExercise)
+			.add(circleAnim, '<')
+			.play();
 	});
 </script>
 
@@ -125,6 +138,9 @@
 	svg {
 		overflow: visible;
 		visibility: hidden;
+	}
+	#box {
+		opacity: 0;
 	}
 	#circle {
 		fill: #ff9797;
