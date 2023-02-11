@@ -3,9 +3,11 @@
 	import PageTransition from '$lib/components/PageTransition.svelte';
 	import { boxReps } from '../stores';
 	import BoxExample from '$lib/components/svg/BoxExample.svelte';
+	import NavBar from '$lib/components/NavBar.svelte';
 </script>
 
 <PageTransition>
+	<NavBar />
 	<div class="wrapper">
 		<ul class="option">
 			<ExerciseTile
