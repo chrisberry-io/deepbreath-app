@@ -6,6 +6,8 @@
 
 	let box: SVGElement, path: SVGPathElement, circle: SVGCircleElement;
 
+	let boxPreExercise: gsap.core.Timeline;
+	let boxExercise: gsap.core.Timeline;
 	let boxAnim: gsap.core.Timeline;
 	let circleAnim: gsap.core.Timeline;
 
@@ -16,32 +18,47 @@
 	onMount(() => {
 		gsap.registerPlugin(MotionPathPlugin);
 
-		boxAnim = gsap.timeline({ repeat: reps }).pause();
-		boxAnim.to(box, {
+		boxPreExercise = gsap.timeline({ repeat: 1 });
+		boxPreExercise.to(box, {
 			scale: 2,
 			duration: 4,
 			ease: 'power2.inOut'
 		});
-		boxAnim.to(box, {
-			duration: 4
-		});
-		boxAnim.to(box, {
+		boxPreExercise.to(box, {
 			scale: 1,
 			duration: 4,
 			ease: 'power2.inOut'
 		});
-		boxAnim.to(box, {
+
+		boxExercise = gsap.timeline({
+			repeat: reps,
+			onStart: () => {
+				animationStarted = true;
+			}
+		});
+		boxExercise.to(box, {
+			scale: 2,
+			duration: 4,
+			ease: 'power2.inOut'
+		});
+		boxExercise.to(box, {
+			duration: 4
+		});
+		boxExercise.to(box, {
+			scale: 1,
+			duration: 4,
+			ease: 'power2.inOut'
+		});
+		boxExercise.to(box, {
 			duration: 4
 		});
 
-		circleAnim = gsap
-			.timeline({
-				repeat: reps,
-				onStart: () => {
-					animationStarted = true;
-				}
-			})
-			.pause();
+		circleAnim = gsap.timeline({
+			repeat: reps,
+			onStart: () => {
+				animationStarted = true;
+			}
+		});
 		circleAnim.to(circle, {
 			duration: 16,
 			ease: 'none',
@@ -58,6 +75,8 @@
 		if (box !== null) {
 			box.style.visibility = 'visible';
 		}
+
+		boxAnim = gsap.timeline().add(boxPreExercise).add(boxExercise).play().add(circleAnim, '<');
 	});
 </script>
 
@@ -71,10 +90,6 @@
 	xmlns="http://www.w3.org/2000/svg"
 	id="box"
 	bind:this={box}
-	on:click={() => {
-		boxAnim.restart();
-		circleAnim.restart();
-	}}
 >
 	<path
 		id="path"
