@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Portal from 'svelte-portal';
 	import { fade, fly } from 'svelte/transition';
+	import { focusTrap } from 'svelte-focus-trap';
 
 	export let modalVisible = false;
 
@@ -35,6 +36,7 @@
 				class="modal"
 				transition:fly={{ x: 0, y: -100, duration: 200 }}
 				use:clickOutside={hideModal}
+				use:focusTrap
 			>
 				<slot />
 			</div>
