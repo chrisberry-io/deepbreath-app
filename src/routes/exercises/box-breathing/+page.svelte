@@ -2,9 +2,7 @@
 	import BoxAnimation from '$lib/components/BoxAnimation.svelte';
 </script>
 
-<div class="wrapper">
-	<BoxAnimation />
-</div>
+<BoxAnimation />
 
 <style>
 	.wrapper {

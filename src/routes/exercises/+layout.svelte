@@ -4,17 +4,19 @@
 	import { fade } from 'svelte/transition';
 </script>
 
-<nav class="exercise-nav" in:fade={{ delay: 500 }} out:fade>
-	<a href="/" class="back">
-		<Icon src={ArrowLeft} size="24" />
-	</a>
-</nav>
+<div class="wrapper">
+	<nav class="exercise-nav" in:fade={{ delay: 500 }} out:fade>
+		<a href="/" class="back">
+			<Icon src={ArrowLeft} size="24" />
+		</a>
+	</nav>
 
-<PageTransition>
-	<div class="wrapper">
-		<slot />
-	</div>
-</PageTransition>
+	<main class="main">
+		<PageTransition>
+			<slot />
+		</PageTransition>
+	</main>
+</div>
 
 <style>
 	.exercise-nav {
@@ -25,5 +27,17 @@
 		color: var(--color-text-default);
 		display: block;
 		padding: 1rem;
+	}
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		height: 100dvh;
+	}
+	.main {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 </style>
