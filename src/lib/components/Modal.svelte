@@ -27,6 +27,12 @@
 	function hideModal() {
 		modalVisible = false;
 	}
+
+	function onKeyDown(event: KeyboardEvent) {
+		if (event.key === 'Escape') {
+			hideModal();
+		}
+	}
 </script>
 
 {#if modalVisible}
@@ -43,6 +49,8 @@
 		</div>
 	</Portal>
 {/if}
+
+<svelte:window on:keydown={onKeyDown} />
 
 <style lang="scss">
 	.modal-wrapper {
