@@ -14,7 +14,7 @@
 				name="Box Breathing"
 				link="/exercises/box-breathing"
 				reps={boxReps}
-				description="Breath in for 4 seconds, hold for 4 seconds, breath out for 4 seconds, hold for 4 seconds. Repeat."
+				description="Breathe in for 4 seconds, hold for 4 seconds, breathe out for 4 seconds, hold for 4 seconds. Repeat."
 			>
 				<BoxExample slot="icon" />
 			</ExerciseTile>
