@@ -5,7 +5,7 @@
 </script>
 
 <div class="wrapper">
-	<nav class="exercise-nav" in:fade={{ delay: 500 }} out:fade>
+	<nav class="exercise-nav" in:fade={{ delay: 400 }} out:fade>
 		<a href="/" class="back">
 			<Icon src={ArrowLeft} size="24" />
 		</a>
