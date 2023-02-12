@@ -4,6 +4,7 @@
 	import { fade } from 'svelte/transition';
 	import Modal from './Modal.svelte';
 	import PlayButton from './svg/PlayButton.svelte';
+	import { Icon, PencilAlt } from 'svelte-hero-icons';
 
 	// Props
 	export let name: string;
@@ -25,7 +26,9 @@
 	<div class="left">
 		<a href={link}>{name}</a>
 		<p class="description">{description}</p>
-		<button class="reps" transition:fade on:click={showModal}>{$reps} Reps</button>
+		<button class="reps" transition:fade on:click={showModal}
+			>{$reps} Reps <Icon src={PencilAlt} size="14" /></button
+		>
 	</div>
 	<a href={link} class="play-button">
 		<PlayButton />
@@ -74,6 +77,9 @@
 		padding: 0.25rem 0.75rem;
 		border: 0;
 		background: none;
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
 	}
 
 	.description {
