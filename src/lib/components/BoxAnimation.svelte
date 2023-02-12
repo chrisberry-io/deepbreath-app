@@ -12,7 +12,7 @@
 	let boxAnim: gsap.core.Timeline;
 	let circleAnim: gsap.core.Timeline;
 
-	let reps: number = $boxReps;
+	let repeatNum: number = $boxReps - 1;
 
 	let animationStarted = false;
 
@@ -38,7 +38,7 @@
 			});
 
 		boxExercise = gsap.timeline({
-			repeat: reps,
+			repeat: repeatNum,
 			onStart: () => {
 				animationStarted = true;
 			}
@@ -60,24 +60,33 @@
 			duration: 4
 		});
 
-		circleAnim = gsap.timeline({
-			repeat: reps,
-			onStart: () => {
-				animationStarted = true;
-			}
-		});
-		circleAnim.to(circle, {
-			duration: 16,
-			ease: 'none',
-			motionPath: {
-				path: path,
-				align: path,
-				autoRotate: true,
-				alignOrigin: [0.5, 0.5],
-				start: -0.15,
-				end: 0.85
-			}
-		});
+		circleAnim = gsap
+			.timeline({
+				repeat: repeatNum,
+				onStart: () => {
+					animationStarted = true;
+				}
+			})
+			.to(circle, {
+				duration: 16,
+				ease: 'none',
+				motionPath: {
+					path: path,
+					align: path,
+					autoRotate: true,
+					alignOrigin: [0.5, 0.5],
+					start: -0.15,
+					end: 0.85
+				}
+			})
+			.to(
+				circle,
+				{
+					duration: 0.5,
+					opacity: 1
+				},
+				'<'
+			);
 
 		if (box !== null) {
 			box.style.visibility = 'visible';
@@ -145,6 +154,7 @@
 	#circle {
 		fill: #ff9797;
 		z-index: 10;
+		opacity: 0;
 	}
 	#path {
 		z-index: 0;

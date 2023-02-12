@@ -50,6 +50,7 @@
 		padding: 1.75rem;
 		gap: 1.5rem;
 		align-items: center;
+		margin: 0 1rem;
 		.left {
 			flex: 1;
 			display: flex;
