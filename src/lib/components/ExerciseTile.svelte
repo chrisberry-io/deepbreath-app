@@ -11,6 +11,7 @@
 	export let description: string;
 	export let link: string;
 	export let reps: Writable<number>;
+	export let playOffset: string = '0px';
 
 	// State
 	let modalVisible = false;
@@ -22,7 +23,7 @@
 	};
 </script>
 
-<li class="tile">
+<li class="tile" style="--playOffset: {playOffset}">
 	<div class="left">
 		<a href={link}>{name}</a>
 		<p class="description">{description}</p>
@@ -97,6 +98,11 @@
 		justify-items: center;
 		& > :global(svg) {
 			grid-area: 1 / 1 / 2 / 2;
+			position: relative;
+		}
+		& > :global(.play-icon) {
+			position: relative;
+			top: var(--playOffset);
 		}
 	}
 </style>

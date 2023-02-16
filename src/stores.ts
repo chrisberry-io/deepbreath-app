@@ -27,5 +27,9 @@ function toLocalStorage(store: Writable<any>, storageKey: string) {
 }
 
 export const boxReps = writable(Number(fromLocalStorage('boxReps', 2)));
+export const fourSevenEightReps = writable(Number(fromLocalStorage('fourSevenEightReps', 2)));
+export const evenReps = writable(Number(fromLocalStorage('evenReps', 2)));
 
 toLocalStorage(boxReps, 'boxReps');
+toLocalStorage(fourSevenEightReps, 'fourSevenEightReps');
+toLocalStorage(evenReps, 'evenReps');
