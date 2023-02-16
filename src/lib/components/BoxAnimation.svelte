@@ -4,16 +4,18 @@
 	import { onMount } from 'svelte';
 	import { boxReps } from '../../stores';
 
+	// Parts of graphic
 	let box: SVGElement, path: SVGPathElement, circle: SVGCircleElement;
 
+	// Animation timelines
 	let boxFadingIn: gsap.core.Timeline;
 	let boxPreExercise: gsap.core.Timeline;
 	let boxExercise: gsap.core.Timeline;
 	let boxAnim: gsap.core.Timeline;
 	let circleAnim: gsap.core.Timeline;
 
+	// Animation variables
 	let repeatNum: number = $boxReps - 1;
-
 	let animationStarted = false;
 
 	onMount(() => {
@@ -37,28 +39,29 @@
 				ease: 'power2.inOut'
 			});
 
-		boxExercise = gsap.timeline({
-			repeat: repeatNum,
-			onStart: () => {
-				animationStarted = true;
-			}
-		});
-		boxExercise.to(box, {
-			scale: 2,
-			duration: 4,
-			ease: 'power2.inOut'
-		});
-		boxExercise.to(box, {
-			duration: 4
-		});
-		boxExercise.to(box, {
-			scale: 1,
-			duration: 4,
-			ease: 'power2.inOut'
-		});
-		boxExercise.to(box, {
-			duration: 4
-		});
+		boxExercise = gsap
+			.timeline({
+				repeat: repeatNum,
+				onStart: () => {
+					animationStarted = true;
+				}
+			})
+			.to(box, {
+				scale: 2,
+				duration: 4,
+				ease: 'power2.inOut'
+			})
+			.to(box, {
+				duration: 4
+			})
+			.to(box, {
+				scale: 1,
+				duration: 4,
+				ease: 'power2.inOut'
+			})
+			.to(box, {
+				duration: 4
+			});
 
 		circleAnim = gsap
 			.timeline({
@@ -88,9 +91,9 @@
 				'<'
 			);
 
-		if (box !== null) {
-			box.style.visibility = 'visible';
-		}
+		// if (box !== null) {
+		// 	box.style.visibility = 'visible';
+		// }
 
 		boxAnim = gsap
 			.timeline()
@@ -102,8 +105,6 @@
 	});
 </script>
 
-<!-- TODO: Replace on:click with something more automatic -->
-<!-- svelte-ignore a11y-click-events-have-key-events -->
 <svg
 	width="100"
 	height="100"
@@ -146,7 +147,7 @@
 <style>
 	svg {
 		overflow: visible;
-		visibility: hidden;
+		visibility: visible;
 	}
 	#box {
 		opacity: 0;
