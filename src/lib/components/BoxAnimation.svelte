@@ -12,6 +12,7 @@
 	let boxPreExercise: gsap.core.Timeline;
 	let boxExercise: gsap.core.Timeline;
 	let boxAnim: gsap.core.Timeline;
+	let circleFadingIn: gsap.core.Timeline;
 	let circleAnim: gsap.core.Timeline;
 
 	// Animation variables
@@ -63,6 +64,8 @@
 				duration: 4
 			});
 
+		circleFadingIn = gsap.timeline().to(circle, { duration: 0.5, opacity: 1 });
+
 		circleAnim = gsap
 			.timeline({
 				repeat: repeatNum,
@@ -81,25 +84,14 @@
 					start: -0.15,
 					end: 0.85
 				}
-			})
-			.to(
-				circle,
-				{
-					duration: 0.5,
-					opacity: 1
-				},
-				'<'
-			);
-
-		// if (box !== null) {
-		// 	box.style.visibility = 'visible';
-		// }
+			});
 
 		boxAnim = gsap
 			.timeline()
 			.add(boxFadingIn)
 			.add(boxPreExercise, '<')
 			.add(boxExercise)
+			.add(circleFadingIn, '<')
 			.add(circleAnim, '<')
 			.play();
 	});
