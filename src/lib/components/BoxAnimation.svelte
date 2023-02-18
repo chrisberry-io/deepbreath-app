@@ -14,6 +14,7 @@
 	let boxAnim: gsap.core.Timeline;
 	let circleFadingIn: gsap.core.Timeline;
 	let circleAnim: gsap.core.Timeline;
+	let circleFadingOut: gsap.core.Timeline;
 
 	// Animation variables
 	let repeatNum: number = $boxReps - 1;
@@ -86,6 +87,8 @@
 				}
 			});
 
+		circleFadingOut = gsap.timeline().to(circle, { duration: 0.5, opacity: 0 });
+
 		boxAnim = gsap
 			.timeline()
 			.add(boxFadingIn)
@@ -93,6 +96,7 @@
 			.add(boxExercise)
 			.add(circleFadingIn, '<')
 			.add(circleAnim, '<')
+			.add(circleFadingOut, '>')
 			.play();
 	});
 </script>
