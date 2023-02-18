@@ -14,6 +14,7 @@
 	let triangleAnim: gsap.core.Timeline;
 	let circleFadingIn: gsap.core.Timeline;
 	let circleAnim: gsap.core.Timeline;
+	let circleFadingOut: gsap.core.Timeline;
 
 	// Animation variables
 	let repeatNum: number = $evenReps - 1;
@@ -108,9 +109,7 @@
 				}
 			});
 
-		// if (triangle !== null) {
-		// 	triangle.style.visibility = 'visible';
-		// }
+		circleFadingOut = gsap.timeline().to(circle, { duration: 0.5, opacity: 0 });
 
 		triangleAnim = gsap
 			.timeline()
@@ -119,6 +118,7 @@
 			.add(triangleExercise)
 			.add(circleFadingIn, '<')
 			.add(circleAnim, '<')
+			.add(circleFadingOut, '>')
 			.play();
 	});
 </script>
