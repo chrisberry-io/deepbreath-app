@@ -1,7 +1,7 @@
 <script>
 	import ExerciseTile from '$lib/components/ExerciseTile.svelte';
 	import PageTransition from '$lib/components/PageTransition.svelte';
-	import { boxReps, fourSevenEightReps, evenReps } from '../stores';
+	import { boxReps, fourSevenEightReps, evenReps } from '../lib/stores';
 	import BoxExample from '$lib/components/svg/BoxExample.svelte';
 	import NavBar from '$lib/components/NavBar.svelte';
 	import FourSevenEightExample from '$lib/components/svg/FourSevenEightExample.svelte';

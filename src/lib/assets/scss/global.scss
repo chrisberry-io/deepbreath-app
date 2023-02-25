@@ -82,14 +82,44 @@ h6 {
 	--color-text-default-dark: #fff;
 }
 
-html.dark {
+.defaultDark {
 	--color-background-default: var(--background-default-dark);
 	--color-text-default: var(--color-text-default-dark);
 	--color-surface1: var(--color-surface1-dark);
 	--color-surface2: var(--color-surface2-dark);
+	--color-gradient-stop1: #863ae6;
+	--color-gradient-stop2: #cc63ae;
+}
+
+.defaultLight {
+	--color-background-default: #fff;
+	--color-text-default: #000;
+	--color-surface1: #f5f5f5;
+	--color-surface2: #e5e5e5;
+	--color-gradient-stop1: #ff953d;
+	--color-gradient-stop2: #ffe668;
+}
+
+.nord {
+	--color-background-default: #2e3440;
+	--color-text-default: #d8dee9;
+	--color-surface1: #3b4252;
+	--color-surface2: #434c5e;
+	--color-gradient-stop1: #5e81ac;
+	--color-gradient-stop2: #8fbcbb;
+}
+
+.midnight {
+	--color-background-default: #0d1117;
+	--color-text-default: #c9d1d9;
+	--color-surface1: #161b22;
+	--color-surface2: #21262d;
+	--color-gradient-stop1: #05327a;
+	--color-gradient-stop2: #41057a;
 }
 
 body {
 	background-color: var(--color-background-default);
 	color: var(--color-text-default);
+	transition: background-color 0.5s ease, color 0.5s ease;
 }
