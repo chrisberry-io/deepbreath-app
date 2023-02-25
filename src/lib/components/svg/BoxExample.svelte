@@ -14,8 +14,19 @@
 			y2="100"
 			gradientUnits="userSpaceOnUse"
 		>
-			<stop stop-color="#863AE6" />
-			<stop offset="1" stop-color="#CC63AE" />
+			<stop class="stop1" />
+			<stop offset="1" class="stop2" />
 		</linearGradient>
 	</defs>
 </svg>
+
+<style>
+	.stop1 {
+		stop-color: var(--color-gradient-stop1);
+		transition: stop-color 0.5s ease;
+	}
+	.stop2 {
+		stop-color: var(--color-gradient-stop2);
+		transition: stop-color 0.5s ease;
+	}
+</style>

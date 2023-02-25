@@ -2,7 +2,7 @@
 	import { gsap } from 'gsap';
 	import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 	import { onMount } from 'svelte';
-	import { evenReps } from '../../stores';
+	import { evenReps } from '../stores';
 
 	// Parts of graphic
 	let triangle: SVGElement, path: SVGPathElement, circle: SVGCircleElement;

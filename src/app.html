@@ -6,10 +6,10 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="manifest" href="%sveltekit.assets%/manifest.json" crossorigin="use-credentials" />
 		<script>
-			if (localStorage.theme === 'light') {
-				document.documentElement.classList.add('light');
+			if (localStorage.theme) {
+				document.documentElement.classList.add(localStorage.theme);
 			} else {
-				document.documentElement.classList.add('dark');
+				document.documentElement.classList.add('midnight');
 			}
 			</script>
 		</script>

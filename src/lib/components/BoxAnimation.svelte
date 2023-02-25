@@ -2,7 +2,7 @@
 	import { gsap } from 'gsap';
 	import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 	import { onMount } from 'svelte';
-	import { boxReps } from '../../stores';
+	import { boxReps } from '../stores';
 
 	// Parts of graphic
 	let box: SVGElement, path: SVGPathElement, circle: SVGCircleElement;
