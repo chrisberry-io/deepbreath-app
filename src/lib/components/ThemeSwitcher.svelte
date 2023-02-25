@@ -18,7 +18,7 @@
 		document.documentElement.classList.value = theme;
 		localStorage.setItem('theme', theme);
 		$currentTheme = theme;
-		$currentTheme = themeHex;
+		$currentThemeHex = themeHex;
 	}
 </script>
 
