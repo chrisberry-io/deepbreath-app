@@ -1,24 +1,32 @@
 <script lang="ts">
-	import { currentTheme } from '$lib/stores';
+	import { currentTheme, currentThemeHex } from '$lib/stores';
 	import { fade, slide } from 'svelte/transition';
 
 	type ThemeValue = 'defaultDark' | 'defaultLight' | 'midnight' | 'nord';
-	type Theme = [string, ThemeValue];
+	type Theme = [string, ThemeValue, string];
 
 	const themes: Theme[] = [
-		['Dark', 'defaultDark'],
-		['Light', 'defaultLight'],
-		['Midnight', 'midnight'],
-		['Nord', 'nord']
+		['Dark', 'defaultDark', '#33293e'],
+		['Light', 'defaultLight', '#fff'],
+		['Midnight', 'midnight', '#0d1117'],
+		['Nord', 'nord', '#2e3440']
 	];
 
+	$: themeHex = themes.find(([, value]) => value === $currentTheme)?.[2];
+
 	function switchTheme(theme: ThemeValue) {
-		console.log(document.documentElement.classList);
 		document.documentElement.classList.value = theme;
 		localStorage.setItem('theme', theme);
 		$currentTheme = theme;
+		$currentTheme = themeHex;
 	}
 </script>
+
+<svelte:head>
+	{#if themeHex !== undefined}
+		<meta name="theme-color" content={themeHex} />
+	{/if}
+</svelte:head>
 
 <div class="theme-switcher" in:slide out:slide={{ delay: 250 }}>
 	{#each themes as [theme, value]}
@@ -44,7 +52,7 @@
 		display: grid;
 		gap: 0.5rem;
 		padding: 1.5rem 0;
-		grid-template-columns: minmax(40px, 1fr) 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
 		overflow: scroll;
 		scroll-snap-type: x mandatory;
 		padding: 1rem 0.5rem;

@@ -30,8 +30,10 @@ export const boxReps = writable(Number(fromLocalStorage('boxReps', 2)));
 export const fourSevenEightReps = writable(Number(fromLocalStorage('fourSevenEightReps', 2)));
 export const evenReps = writable(Number(fromLocalStorage('evenReps', 2)));
 export const currentTheme = writable(fromLocalStorage('theme', 'defaultDark'));
+export const currentThemeHex = writable(fromLocalStorage('themeHex', '#000000'));
 
 toLocalStorage(boxReps, 'boxReps');
 toLocalStorage(fourSevenEightReps, 'fourSevenEightReps');
 toLocalStorage(evenReps, 'evenReps');
 toLocalStorage(currentTheme, 'theme');
+toLocalStorage(currentTheme, 'currentThemeHex');
